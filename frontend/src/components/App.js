@@ -66,28 +66,28 @@ function App() {
     setLoggedIn(true);
   };
 
-  React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setCurrentUser(data);
-        setAvatar(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [loggedIn]);
+  // React.useEffect(() => {
+  //   api
+  //     .getUserInfo()
+  //     .then((data) => {
+  //       setCurrentUser(data);
+  //       setAvatar(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [loggedIn]);
 
-  React.useEffect(() => {
-    api
-      .getCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [loggedIn]);
+  // React.useEffect(() => {
+  //   api
+  //     .getCards()
+  //     .then((data) => {
+  //       setCards(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [loggedIn]);
 
   function handleAddPlaceSubmit(data) {
     api
@@ -248,8 +248,15 @@ function App() {
           localStorage.removeItem("jwt");
           console.log(err);
         });
+      api
+        .getInitialData()
+        .then(([cardData, userData]) => {
+          setCurrentUser(userData);
+          setCards(cardData);
+        })
+        .catch((err) => console.log(err));
     }
-  }, [navigate]);
+  }, [navigate, loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

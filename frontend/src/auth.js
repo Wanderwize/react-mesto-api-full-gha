@@ -51,7 +51,7 @@ export const getContent = () => {
 
 export const tokenCheck = () => {
   const token = localStorage.getItem("jwt");
-  return fetch("http://localhost:3000/users/me", {
+  return fetch(`http://${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
