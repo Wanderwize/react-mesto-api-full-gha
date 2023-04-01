@@ -66,29 +66,6 @@ function App() {
     setLoggedIn(true);
   };
 
-  // React.useEffect(() => {
-  //   api
-  //     .getUserInfo()
-  //     .then((data) => {
-  //       setCurrentUser(data);
-  //       setAvatar(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [loggedIn]);
-
-  // React.useEffect(() => {
-  //   api
-  //     .getCards()
-  //     .then((data) => {
-  //       setCards(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [loggedIn]);
-
   function handleAddPlaceSubmit(data) {
     api
       .pushNewCard(data)
@@ -234,6 +211,10 @@ function App() {
   //   }
   // };
 
+  // React.useEffect(() => {}, [loggedIn]);
+
+  // React.useEffect(() => {}, [loggedIn]);
+
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -249,12 +230,22 @@ function App() {
           console.log(err);
         });
       api
-        .getInitialData()
-        .then(([cardData, userData]) => {
-          setCurrentUser(userData);
-          setCards(cardData);
+        .getCards()
+        .then((data) => {
+          setCards(data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
+      api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+          setAvatar(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [navigate, loggedIn]);
 
