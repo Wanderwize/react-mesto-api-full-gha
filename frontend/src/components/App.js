@@ -268,7 +268,7 @@ function App() {
             /> */}
 
             <Route
-              path="/signin"
+              path="/sign-in"
               element={
                 <Login
                   setSuccessRegister={setSuccessRegister}
@@ -279,7 +279,7 @@ function App() {
               }
             />
             <Route
-              path="/signup"
+              path="/sign-up"
               element={
                 <Register
                   setSuccessRegister={setSuccessRegister}

@@ -19,7 +19,7 @@ const Register = (props, { setSuccessRegister, setInfoTooltipOpen }) => {
       (res) => {
         props.setSuccessRegister(true);
         props.infoTooltipOpenPopup();
-        navigate("/signin", { replace: true });
+        navigate("/sign-in", { replace: true });
       },
       (err) => {
         props.setSuccessRegister(false);
@@ -58,7 +58,7 @@ const Register = (props, { setSuccessRegister, setInfoTooltipOpen }) => {
           <div className="login__flex">
             <p className="login__enter">
               Уже зарегистрированы?{" "}
-              <a className="login__enter" href="/signin">
+              <a className="login__enter" href="/sign-in">
                 Войти
               </a>
             </p>
