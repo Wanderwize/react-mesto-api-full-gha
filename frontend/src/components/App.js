@@ -211,9 +211,28 @@ function App() {
   //   }
   // };
 
-  // React.useEffect(() => {}, [loggedIn]);
+  React.useEffect(() => {
+    api
+      .getUserInfo()
+      .then((data) => {
+        setCurrentUser(data);
+        setAvatar(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loggedIn]);
 
-  // React.useEffect(() => {}, [loggedIn]);
+  React.useEffect(() => {
+    api
+      .getCards()
+      .then((data) => {
+        setCards(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loggedIn]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -229,25 +248,8 @@ function App() {
           localStorage.removeItem("jwt");
           console.log(err);
         });
-      api
-        .getCards()
-        .then((data) => {
-          setCards(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      api
-        .getUserInfo()
-        .then((data) => {
-          setCurrentUser(data);
-          setAvatar(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     }
-  }, [navigate, loggedIn]);
+  }, [navigate]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

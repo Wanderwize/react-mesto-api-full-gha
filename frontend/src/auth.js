@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://api.mesto.semenenko.nomoredomains.work";
 
 function handleOriginalResponse(res) {
   if (!res.ok) {
@@ -51,7 +51,7 @@ export const getContent = () => {
 
 export const tokenCheck = () => {
   const token = localStorage.getItem("jwt");
-  return fetch(`http://${BASE_URL}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
