@@ -28,16 +28,15 @@ mongoose.connect(DB_ADRESS, {
 app.use(express.json());
 
 app.use(cors());
+app.use(userRouter);
+app.use(cardRouter);
+app.use(requestLogger);
 
 app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Сервер сейчас упадёт");
   }, 0);
 });
-
-app.use(userRouter);
-app.use(cardRouter);
-app.use(requestLogger);
 
 app.post(
   "/signin",
