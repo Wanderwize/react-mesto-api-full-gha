@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express = require("express");
 
 const app = express();
 const mongoose = require("mongoose");
-
+куй
 const bodyParser = require("body-parser");
 const { errors } = require("celebrate");
 const { celebrate, Joi } = require("celebrate");
