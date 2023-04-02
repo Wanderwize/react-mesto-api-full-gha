@@ -10,7 +10,7 @@
 
 ## Ссылки на проект
 
-Публичый ip 158.160.63.191
+IP 158.160.63.191
 
 Frontend https://mesto.semenenko.nomoredomains.work
 
