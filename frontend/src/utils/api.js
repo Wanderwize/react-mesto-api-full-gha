@@ -144,7 +144,7 @@ export const tokenCheck = () => {
 };
 
 const api = new Api({
-  baseUrl: "https://api.mesto.semenenko.nomoredomains.work/",
+  baseUrl: "https://api.mesto.semenenko.nomoredomains.work",
 });
 
 export default api;
