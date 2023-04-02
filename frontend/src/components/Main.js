@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import Card from "./Card";
-import CurrentUserContext from "../contexts/CurrentUserContext";
-import CurrentAvatarContext from "../contexts/CurrentAvatarContext";
+import Card from './Card';
+import CurrentUserContext from '../contexts/CurrentUserContext';
+import CurrentAvatarContext from '../contexts/CurrentAvatarContext';
 
 function Main({
   cards,
@@ -20,9 +20,14 @@ function Main({
       <section className="profile">
         <div className="profile__avatar-container">
           <img
-            style={{ backgroundImage: `url(${userInfo.avatar})` }}
+            style={{
+              backgroundImage: `url(${userInfo.avatar})`,
+
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
             id="avatar"
-            className={"profile__avatar-image"}
+            className={'profile__avatar-image'}
           />
           <button
             onClick={onEditAvatar}

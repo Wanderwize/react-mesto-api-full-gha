@@ -1,13 +1,15 @@
-import logo from "../images/Vectorlogotip.svg";
-import { Link, useNavigate } from "react-router-dom";
-import { authorize, getContent, getEmail } from "../auth.js";
+import logo from '../images/Vectorlogotip.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import { authorize, getContent, getEmail } from '../auth.js';
 
 function Header(props) {
   const history = useNavigate();
   function signOut() {
-    localStorage.removeItem("jwt");
-    history.push("/login");
+    localStorage.removeItem('jwt');
+    history.push('/login');
   }
+
+  const loginUrl = window.location.pathname === '/sign-in' ? true : false;
 
   return (
     <header className="header">
@@ -23,9 +25,12 @@ function Header(props) {
           </a>
         </div>
       ) : (
-        <a className="header__auth" href="/sign-up">
-          Регистрация
-        </a>
+        <Link
+          to={loginUrl ? '/sign-up' : '/sign-in'}
+          className="header__auth"
+        >
+          {loginUrl ? 'Регистрация' : 'Вход'}
+        </Link>
       )}
     </header>
   );

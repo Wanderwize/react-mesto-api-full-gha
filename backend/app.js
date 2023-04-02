@@ -46,7 +46,7 @@ app.post(
       password: Joi.string().required(),
     }),
   }),
-  login
+  login,
 );
 app.post(
   '/signup',
@@ -59,7 +59,7 @@ app.post(
       avatar: Joi.string().pattern(regEx.link),
     }),
   }),
-  createUser
+  createUser,
 );
 app.use('*', auth, () => {
   throw new NotFoundError('Страница не найдена');

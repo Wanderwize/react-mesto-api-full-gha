@@ -1,29 +1,29 @@
-import Header from "../components/Header.js";
-import Register from "./Register.js";
-import Login from "../components/Login";
-import Main from "../components/Main.js";
-import Footer from "../components/Footer.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import EditProfilePopup from "../components/EditProfilePopup.js";
-import EditAvatarPopup from "../components/EditAvatarPopup.js";
-import React from "react";
-import ImagePopup from "./ImagePopup.js";
-import api from "../utils/api";
-import CurrentUserContext from "../contexts/CurrentUserContext";
-import AddPlacePopup from "./AddPlacePopup.js";
-import ProtectedRouteElement from "./ProtectedRoute";
-import { Link } from "react-router-dom";
-import * as auth from "../auth.js";
-import tokenCheck from "../auth.js";
-import InfoTooltip from "./InfoTooltip";
+import Header from '../components/Header.js';
+import Register from './Register.js';
+import Login from '../components/Login';
+import Main from '../components/Main.js';
+import Footer from '../components/Footer.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import EditProfilePopup from '../components/EditProfilePopup.js';
+import EditAvatarPopup from '../components/EditAvatarPopup.js';
+import React from 'react';
+import ImagePopup from './ImagePopup.js';
+import api from '../utils/api';
+import CurrentUserContext from '../contexts/CurrentUserContext';
+import AddPlacePopup from './AddPlacePopup.js';
+import ProtectedRouteElement from './ProtectedRoute';
+import { Link } from 'react-router-dom';
+import * as auth from '../auth.js';
+import tokenCheck from '../auth.js';
+import InfoTooltip from './InfoTooltip';
 import {
   BrowserRouter,
   Route,
   Routes,
   Navigate,
   useNavigate,
-} from "react-router-dom";
-import { useEffect, useState } from "react";
+} from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -44,7 +44,7 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
 
-  const [headerEmail, setHeaderEmail] = React.useState("");
+  const [headerEmail, setHeaderEmail] = React.useState('');
 
   const navigate = useNavigate();
 
@@ -66,10 +66,6 @@ function App() {
     setLoggedIn(true);
   };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
   function handleAddPlaceSubmit(data) {
     api
       .pushNewCard(data)
@@ -129,7 +125,7 @@ function App() {
 
   const handleCardLike = (card) => {
     const isLiked = card.likes.some((id) => id === currentUser._id);
-    console.log("123");
+    console.log('123');
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
@@ -215,55 +211,45 @@ function App() {
   //   }
   // };
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
-  React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setCurrentUser(data);
-        setAvatar(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [loggedIn]);
+  React.useEffect(() => {}, [loggedIn]);
 
-  React.useEffect(() => {
-    api
-      .getCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [loggedIn]);
+  React.useEffect(() => {}, [loggedIn]);
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem('jwt');
     if (token) {
       auth
         .tokenCheck(token)
         .then((res) => {
           setHeaderEmail(res.email);
           setLoggedIn(true);
-          navigate("/");
+          navigate('/');
+          console.log(token)
         })
         .catch((err) => {
-          localStorage.removeItem("jwt");
+          localStorage.removeItem('jwt');
+          console.log(err);
+        });
+      api
+        .getCards()
+        .then((data) => {
+          setCards(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+          setAvatar(data);
+        })
+        .catch((err) => {
           console.log(err);
         });
     }
-  }, [navigate]);
+  }, [navigate, loggedIn]);
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentUserContext.Provider value={avatar}>
