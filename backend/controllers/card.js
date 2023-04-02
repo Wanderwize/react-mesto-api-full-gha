@@ -36,7 +36,7 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .sort({ createdAt: 'desc' })
     .then((card) => res.send(card))
     .catch(next);
 };
