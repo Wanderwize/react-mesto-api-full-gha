@@ -66,7 +66,10 @@ function App() {
     setLoggedIn(true);
   };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
   function handleAddPlaceSubmit(data) {
     api
       .pushNewCard(data)
@@ -212,7 +215,10 @@ function App() {
   //   }
   // };
 
+<<<<<<< HEAD
   
+=======
+>>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -253,8 +259,11 @@ function App() {
     }
   }, [navigate]);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentUserContext.Provider value={avatar}>
