@@ -224,7 +224,7 @@ function App() {
           setHeaderEmail(res.email);
           setLoggedIn(true);
           navigate('/');
-          console.log(token)
+          console.log(token);
         })
         .catch((err) => {
           localStorage.removeItem('jwt');
@@ -233,7 +233,7 @@ function App() {
       api
         .getCards()
         .then((data) => {
-          setCards(data);
+          setCards(data)
         })
         .catch((err) => {
           console.log(err);
