@@ -21,29 +21,31 @@ cardRouter.post(
       link: Joi.string().required().pattern(regEx.link),
     }),
   }),
-  createCard,
+  createCard
 );
 
 cardRouter.delete(
   '/cards/:cardId',
+  auth,
   celebrate({
     params: Joi.object().keys({
       cardId: Joi.string().length(24).hex().required(),
     }),
   }),
-  auth,
-  deleteCard,
+
+  deleteCard
 );
 
 cardRouter.put(
   '/cards/:cardId/likes',
+  auth,
   celebrate({
     params: Joi.object().keys({
       cardId: Joi.string().length(24).hex().required(),
     }),
   }),
-  auth,
-  likeCard,
+
+  likeCard
 );
 
 cardRouter.delete(
@@ -54,7 +56,7 @@ cardRouter.delete(
       cardId: Joi.string().length(24).hex().required(),
     }),
   }),
-  dislikeCard,
+  dislikeCard
 );
 
 module.exports = cardRouter;

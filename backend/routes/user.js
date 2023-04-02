@@ -20,17 +20,18 @@ userRouter.patch(
   celebrate({
     body: Joi.object().keys({
       name: Joi.string().required().min(2).max(30),
-      about: Joi.string().min(2).max(30),
+      about: Joi.string().min(2).max(30).required(),
     }),
   }),
   updateProfile,
 );
+
 userRouter.patch(
   '/users/me/avatar',
   auth,
   celebrate({
     body: Joi.object().keys({
-      avatar: Joi.string().pattern(regEx.link),
+      avatar: Joi.string().pattern(regEx.link).required(),
     }),
   }),
 

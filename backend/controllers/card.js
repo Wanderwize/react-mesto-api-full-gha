@@ -36,6 +36,7 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
+    .sort({ createdAt: -1 })
     .then((card) => res.send(card))
     .catch(next);
 };
@@ -43,19 +44,17 @@ module.exports.getCards = (req, res, next) => {
 const updateLike = (req, res, next, method) => {
   const { cardId } = req.params;
 
-  if (cardId.length === 24) {
-    Card.findByIdAndUpdate(
-      cardId,
-      { [method]: { likes: req.user._id } },
+  Card.findByIdAndUpdate(
+    cardId,
+    { [method]: { likes: req.user._id } },
 
-      { new: true },
-    )
-      .orFail(new NotFoundError('Карточка не найдена'))
-      .then((card) => {
-        res.send(card);
-      })
-      .catch(next);
-  }
+    { new: true }
+  )
+    .orFail(new NotFoundError('Карточка не найдена'))
+    .then((card) => {
+      res.send(card);
+    })
+    .catch(next);
 };
 module.exports.likeCard = (req, res, next) => {
   updateLike(req, res, next, '$addToSet');
@@ -64,29 +63,3 @@ module.exports.likeCard = (req, res, next) => {
 module.exports.dislikeCard = (req, res, next) => {
   updateLike(req, res, next, '$pull');
 };
-
-// module.exports.likeCard = (req, res, next) => {
-//   const { cardId } = req.params;
-//   if (cardId.length === 24) {
-//     Card.findByIdAndUpdate(
-//       cardId,
-//       { $addToSet: { likes: cardId } },
-//       { new: true }
-//     )
-//       .populate("likes", "owner")
-//       .orFail(new NotFoundError("Карточка не найдена"))
-//       .then(() => res.send(cardId))
-//       .catch(next);
-//   }
-// };
-
-// module.exports.dislikeCard = (req, res, next) => {
-//   const { cardId } = req.params;
-//   if (cardId.length === 24) {
-//     Card.findByIdAndUpdate(cardId, { $pull: { likes: cardId } }, { new: true })
-//       .populate("likes", "owner")
-//       .orFail(new NotFoundError("Карточка не найдена"))
-//       .then(() => res.send(cardId))
-//       .catch(next);
-//   }
-// };
