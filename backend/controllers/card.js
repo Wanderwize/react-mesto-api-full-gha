@@ -36,7 +36,7 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .sort({ createdAt: -1 })
+    .sort({ createdAt: 1 })
     .then((card) => res.send(card))
     .catch(next);
 };
@@ -48,7 +48,7 @@ const updateLike = (req, res, next, method) => {
     cardId,
     { [method]: { likes: req.user._id } },
 
-    { new: true },
+    { new: true }
   )
     .orFail(new NotFoundError('Карточка не найдена'))
     .then((card) => {
