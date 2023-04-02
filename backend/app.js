@@ -4,7 +4,7 @@ dotenv.config({ path: ".env" });
 
 const app = express();
 const mongoose = require("mongoose");
-const { DB_ADRESS } = require("config");
+const { DB_ADRESS } = process.env;
 const bodyParser = require("body-parser");
 const { errors } = require("celebrate");
 const { celebrate, Joi } = require("celebrate");
