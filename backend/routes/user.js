@@ -51,8 +51,3 @@ userRouter.get(
 );
 
 module.exports = userRouter;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216

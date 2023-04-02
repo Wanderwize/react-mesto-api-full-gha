@@ -19,7 +19,3 @@ module.exports = {
   requestLogger,
   errorLogger,
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
