@@ -48,7 +48,7 @@ const updateLike = (req, res, next, method) => {
       cardId,
       { [method]: { likes: req.user._id } },
 
-      { new: true }
+      { new: true },
     )
       .orFail(new NotFoundError('Карточка не найдена'))
       .then((card) => {
