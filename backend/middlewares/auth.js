@@ -1,7 +1,10 @@
 const jwt = require('jsonwebtoken');
 const AuthorizationError = require('../errors/authoriztionError');
 
+<<<<<<< HEAD
+=======
 const { NODE_ENV, JWT_SECRET } = process.env;
+>>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
 const handleAuthError = () => {
   throw new AuthorizationError('Неправильные почта или пароль');
 };
@@ -19,10 +22,14 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
+<<<<<<< HEAD
+    payload = jwt.verify(token, 'super-strong-secret');
+=======
     payload = jwt.verify(
       token,
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
     );
+>>>>>>> 12fd8cffa1e5ac82fc3fb9ba246e47e6cddc2216
   } catch (err) {
     return handleAuthError(res);
   }
