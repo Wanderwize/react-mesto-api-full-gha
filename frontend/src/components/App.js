@@ -230,19 +230,20 @@ function App() {
           localStorage.removeItem('jwt');
           console.log(err);
         });
-      api
-        .getCards()
-        .then((data) => {
-          setCards(data)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
       api
         .getUserInfo()
         .then((data) => {
           setCurrentUser(data);
           setAvatar(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      api
+        .getCards()
+        .then((data) => {
+          setCards(data);
         })
         .catch((err) => {
           console.log(err);
