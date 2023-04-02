@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.coinfig();
 
 const express = require("express");
 
