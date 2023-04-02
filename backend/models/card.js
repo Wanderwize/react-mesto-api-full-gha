@@ -29,8 +29,8 @@ const cardsSchema = new mongoose.Schema({
   },
 });
 
-cardsSchema.pre('save', function (next) {
-  this.created_at = new Date();
+cardsSchema.pre('save', (next) => {
+  this.createdAt = new Date();
   next();
 });
 
