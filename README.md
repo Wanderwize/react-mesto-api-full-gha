@@ -10,8 +10,8 @@
 
 ## Ссылки на проект
 
-IP-адрес: 158.160.63.191
+IP-адрес 158.160.63.191
 
-Frontend: https://mesto.semenenko.nomoredomains.work
+Frontend https://mesto.semenenko.nomoredomains.work
 
-Backend: https://api.mesto.semenenko.nomoredomains.work
+Backend https://api.mesto.semenenko.nomoredomains.work
