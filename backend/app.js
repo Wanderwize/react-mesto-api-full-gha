@@ -4,7 +4,7 @@ dotenv.config({ path: ".env" });
 
 const app = express();
 const mongoose = require("mongoose");
-
+const { DB_ADRESS } = process.env;
 const bodyParser = require("body-parser");
 const { errors } = require("celebrate");
 const { celebrate, Joi } = require("celebrate");
@@ -20,7 +20,7 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb://127.0.0.1:27017/mestodb", {
+mongoose.connect(DB_ADRESS, {
   useNewUrlParser: true,
 
   useUnifiedTopology: true,
