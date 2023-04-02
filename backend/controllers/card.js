@@ -1,14 +1,14 @@
-const Card = require("../models/card");
-const NotFoundError = require("../errors/notFoundError");
-const ValidationError = require("../errors/validationError");
-const NotEnoughRightsError = require("../errors/NotEnoughRightsError");
+const Card = require('../models/card');
+const NotFoundError = require('../errors/notFoundError');
+const ValidationError = require('../errors/validationError');
+const NotEnoughRightsError = require('../errors/NotEnoughRightsError');
 
 module.exports.deleteCard = (req, res, next) => {
   const { cardId } = req.params;
 
   Card.findById(cardId)
 
-    .orFail(new NotFoundError("Карточка не найдена"))
+    .orFail(new NotFoundError('Карточка не найдена'))
     .then((card) => {
       const user = req.user._id;
       const owner = card.owner._id.toString();
@@ -16,7 +16,7 @@ module.exports.deleteCard = (req, res, next) => {
       if (user === owner) {
         return Card.deleteOne(card).then(() => res.send(card));
       }
-      return next(new NotEnoughRightsError("Недостаточно прав"));
+      return next(new NotEnoughRightsError('Недостаточно прав'));
     })
     .catch(next);
 };
@@ -26,8 +26,8 @@ module.exports.createCard = (req, res, next) => {
   Card.create({ name, link, owner: req.user._id })
     .then((card) => res.send(card))
     .catch((err) => {
-      if (err.name === "ValidationError") {
-        next(new ValidationError("Некорректные данные при создании карточки"));
+      if (err.name === 'ValidationError') {
+        next(new ValidationError('Некорректные данные при создании карточки'));
       } else {
         next(err);
       }
@@ -50,7 +50,7 @@ const updateLike = (req, res, next, method) => {
 
       { new: true }
     )
-      .orFail(new NotFoundError("Карточка не найдена"))
+      .orFail(new NotFoundError('Карточка не найдена'))
       .then((card) => {
         res.send(card);
       })
@@ -58,11 +58,11 @@ const updateLike = (req, res, next, method) => {
   }
 };
 module.exports.likeCard = (req, res, next) => {
-  updateLike(req, res, next, "$addToSet");
+  updateLike(req, res, next, '$addToSet');
 };
 
 module.exports.dislikeCard = (req, res, next) => {
-  updateLike(req, res, next, "$pull");
+  updateLike(req, res, next, '$pull');
 };
 
 // module.exports.likeCard = (req, res, next) => {
